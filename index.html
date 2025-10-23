@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PRECMAVIT Online Pharmacy</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      scroll-behavior: smooth;
+      font-family: "Poppins", sans-serif;
+    }
+
+    body {
+      background: #f0f4ff;
+      overflow-x: hidden;
+    }
+
+    /* ===== NAVIGATION ===== */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(8px);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 5%;
+      z-index: 100;
+    }
+
+    .logo {
+      color: #fff;
+      font-size: 24px;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+
+    .nav-links a {
+      color: #fff;
+      text-decoration: none;
+      margin: 0 15px;
+      font-weight: 500;
+      transition: color 0.3s ease, transform 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      color: #00c6ff;
+      transform: scale(1.1);
+    }
+
+    /* ===== SECTIONS ===== */
+    section {
+      min-height: 100vh;
+      padding: 100px 10%;
+      opacity: 0;
+      transform: translateY(60px);
+      transition: all 1.2s ease-out;
+    }
+
+    section.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ===== HOME ===== */
+    #home {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(to right, #004aad, #00c6ff);
+      color: white;
+      text-align: center;
+    }
+
+    #home h1 {
+      font-size: 48px;
+      margin-bottom: 20px;
+      animation: fadeInDown 1.5s ease-in-out;
+    }
+
+    #home p {
+      font-size: 18px;
+      max-width: 600px;
+      animation: fadeInUp 1.5s ease-in-out;
+    }
+
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-50px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(50px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ===== SERVICES ===== */
+    #services {
+      background: #f8faff;
+      text-align: center;
+    }
+
+    #services h2 {
+      font-size: 36px;
+      margin-bottom: 40px;
+      color: #004aad;
+    }
+
+    .card {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      justify-items: center;
+    }
+
+    .service-card {
+      background: white;
+      border-radius: 15px;
+      padding: 20px;
+      width: 280px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+    }
+
+    .service-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    }
+
+    /* ===== PRODUCTS ===== */
+    #products {
+      background: linear-gradient(to right, #00c6ff, #004aad);
+      color: white;
+      text-align: center;
+    }
+
+    #products h2 {
+      margin-bottom: 40px;
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 25px;
+    }
+
+    .product {
+      background: white;
+      color: black;
+      border-radius: 15px;
+      padding: 20px;
+      transition: transform 0.3s ease;
+    }
+
+    .product:hover {
+      transform: scale(1.05);
+    }
+
+    /* ===== ABOUT ===== */
+    #aboutus {
+      text-align: center;
+      background: white;
+      color: #004aad;
+    }
+
+    #aboutus h2 {
+      font-size: 36px;
+      margin-bottom: 20px;
+    }
+
+    #aboutus p {
+      max-width: 700px;
+      margin: auto;
+      font-size: 18px;
+      line-height: 1.6;
+      color: #333;
+    }
+
+    /* ===== CONTACT ===== */
+    #contact {
+      background: linear-gradient(to right, #004aad, #00c6ff);
+      color: white;
+      text-align: center;
+      padding-bottom: 60px;
+    }
+
+    #contact h2 {
+      margin-bottom: 30px;
+    }
+
+    .message form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 15px;
+      max-width: 400px;
+      margin: auto;
+    }
+
+    .message input,
+    .message textarea {
+      width: 100%;
+      border: none;
+      border-radius: 10px;
+      padding: 12px;
+      outline: none;
+    }
+
+    .message button {
+      background: #fff;
+      color: #004aad;
+      font-weight: bold;
+      border: none;
+      border-radius: 25px;
+      padding: 10px 25px;
+      cursor: pointer;
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+
+    .message button:hover {
+      background: #004aad;
+      color: white;
+    }
+
+    /* ===== BACK TO TOP BUTTON ===== */
+    #backToTop {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background: #004aad;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      cursor: pointer;
+      font-size: 24px;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+      transition: all 0.3s ease;
+      z-index: 999;
+    }
+
+    #backToTop:hover {
+      background: #00c6ff;
+      transform: scale(1.1);
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 768px) {
+      nav {
+        flex-direction: column;
+        text-align: center;
+      }
+      .nav-links {
+        margin-top: 10px;
+      }
+      #home h1 {
+        font-size: 36px;
+      }
+      #home p {
+        font-size: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- NAVBAR -->
+  <nav>
+    <div class="logo">PRECMAVIT</div>
+    <div class="nav-links">
+      <a href="#home">Home</a>
+      <a href="#services">Services</a>
+      <a href="#products">Products</a>
+      <a href="#aboutus">About</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
+
+  <!-- HOME -->
+  <section id="home">
+    <h1>Welcome to PRECMAVIT Online Pharmacy</h1>
+    <p>Where health meets convenience. Order trusted medications and health products from the comfort of your home — safely, fast, and affordable.</p>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="services">
+    <h2>Our Services</h2>
+    <div class="card">
+      <div class="service-card">💊 Fast Prescription Delivery</div>
+      <div class="service-card">🧴 Health & Wellness Products</div>
+      <div class="service-card">💻 Online Consultation</div>
+      <div class="service-card">🚑 Emergency Support</div>
+    </div>
+  </section>
+
+  <!-- PRODUCTS -->
+  <section id="products">
+    <h2>Top Products</h2>
+    <div class="product-grid">
+      <div class="product">Pain Relief Medicine</div>
+      <div class="product">Vitamins & Supplements</div>
+      <div class="product">Skincare & Beauty</div>
+      <div class="product">Baby Care Essentials</div>
+      <div class="product">Medical Equipment</div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="aboutus">
+    <h2>About Us</h2>
+    <p>PRECMAVIT Online Pharmacy is dedicated to providing affordable healthcare products and reliable delivery services. With a passion for quality and customer satisfaction, we bring the pharmacy to your doorstep with trust and technology.</p>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <h2>Contact Us</h2>
+    <div class="message">
+      <form>
+        <input type="text" placeholder="Your Name" required />
+        <input type="email" placeholder="Your Email" required />
+        <textarea placeholder="Your Message" rows="4" required></textarea>
+        <button type="submit">Send Message</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- BACK TO TOP BUTTON -->
+  <button id="backToTop">↑</button>
+
+  <!-- ===== SCRIPTS ===== -->
+  <script>
+    // Scroll animation observer
+    const sections = document.querySelectorAll("section");
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("show");
+          }
+        });
+      },
+      { threshold: 0.2 }
+    );
+    sections.forEach((section) => observer.observe(section));
+
+    // Back to Top Button
+    const backToTop = document.getElementById("backToTop");
+
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > 400) {
+        backToTop.style.display = "flex";
+      } else {
+        backToTop.style.display = "none";
+      }
+    });
+
+    backToTop.addEventListener("click", () => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+  </script>
+</body>
+</html>
